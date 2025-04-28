@@ -104,7 +104,7 @@ const CartPage = () => {
                       <p className="text-[#003B95] font-medium">₹{item.service.price.toFixed(2)}</p>
                       <div className="flex items-center gap-2 mt-2">
                         <button
-                          onClick={() => updateQuantity(item.service._id, item.quantity - 1)}
+                          onClick={() => handleQuantityChange(item.service._id, item.quantity - 1)}
                           className="p-1 hover:bg-gray-100 rounded-full transition-colors"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
