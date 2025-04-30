@@ -79,14 +79,15 @@ const PaymentPage = () => {
       return;
     }
   }, [isRouteValid, router]);
+  const backendUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const handleGenerateQRCode = async () => {
     try {
       setIsLoading(true);
       setErrors({});
-
+      
       // Create payment order with QR code
-      const response = await fetch('/api/payments/create-qr-payment', {
+      const response = await fetch(`${backendUrl}/api/payments/create-qr-payment`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -142,7 +143,7 @@ const PaymentPage = () => {
     setErrors({});
     
     try {
-      const response = await fetch('/api/payments/verify-payment', {
+      const response = await fetch(`${backendUrl}/api/payments/verify-payment`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -244,7 +245,7 @@ const PaymentPage = () => {
       setErrors({});
 
       // Create payment order for pay later
-      const response = await fetch('/api/payments/create-order', {
+      const response = await fetch(`${backendUrl}/api/payments/create-order`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -319,7 +320,7 @@ const PaymentPage = () => {
           <OrderConfirmationEmail orderDetails={orderDetails} />
         );
 
-        const emailResponse = await fetch('/api/email/send', {
+        const emailResponse = await fetch(`${backendUrl}/api/email/send`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -407,7 +408,7 @@ const PaymentPage = () => {
         transactionId: `TXN-${Date.now()}` // Generate a unique transaction ID
       };
 
-      const response = await fetch('/api/payment', {
+      const response = await fetch(`${backendUrl}/api/payment`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

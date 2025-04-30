@@ -102,9 +102,9 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/help-center/cancellation"
+                  href="/help-center/rescheduling"
                   className={`text-gray-400 hover:text-white transition-colors ${
-                    isActive('/help-center/cancellation') ? 'text-white' : ''
+                    isActive('/help-center/rescheduling') ? 'text-white' : ''
                   }`}
                 >
                   Rescheduling Options
