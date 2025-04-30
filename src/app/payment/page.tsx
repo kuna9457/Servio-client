@@ -85,7 +85,7 @@ const PaymentPage = () => {
     try {
       setIsLoading(true);
       setErrors({});
-      
+
       // Create payment order with QR code
       const response = await fetch(`${backendUrl}/api/payments/create-qr-payment`, {
         method: 'POST',
@@ -187,7 +187,7 @@ const PaymentPage = () => {
           <OrderConfirmationEmail orderDetails={orderDetails} />
         );
 
-        const emailResponse = await fetch(`${backendUrl}/api/email/send`, {
+        const emailResponse = await fetch('/api/email/send', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -243,7 +243,7 @@ const PaymentPage = () => {
     try {
       setIsLoading(true);
       setErrors({});
-
+      const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
       // Create payment order for pay later
       const response = await fetch(`${backendUrl}/api/payments/create-order`, {
         method: 'POST',
@@ -273,7 +273,7 @@ const PaymentPage = () => {
       }
 
       // Verify the payment
-      const verifyResponse = await fetch('/api/payments/verify-payment', {
+      const verifyResponse = await fetch(`${backendUrl}/api/payments/verify-payment`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -320,7 +320,7 @@ const PaymentPage = () => {
           <OrderConfirmationEmail orderDetails={orderDetails} />
         );
 
-        const emailResponse = await fetch(`${backendUrl}/api/email/send`, {
+        const emailResponse = await fetch('/api/email/send', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
