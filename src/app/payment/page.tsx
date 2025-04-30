@@ -187,7 +187,7 @@ const PaymentPage = () => {
           <OrderConfirmationEmail orderDetails={orderDetails} />
         );
 
-        const emailResponse = await fetch('/api/email/send', {
+        const emailResponse = await fetch(`${backendUrl}/api/email/send`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
