@@ -108,7 +108,7 @@ export default function Auth() {
           <div className="flex justify-center">
             <Image
               src="/logo.png"
-              alt="ServiceHub Logo"
+              alt="Servio Logo"
               width={64}
               height={64}
               className="rounded-full"

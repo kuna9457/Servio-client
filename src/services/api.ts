@@ -68,7 +68,7 @@ export const authAPI = {
   }) => api.post('/auth/register', data),
 
   
-
+  
   login: (data: { email: string; password: string }) => api.post('/auth/login', data),
 
   updateProfile: (data: {

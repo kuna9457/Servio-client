@@ -30,7 +30,21 @@ export function middleware(request: NextRequest) {
   }
   
   // Continue to the requested page
-  return NextResponse.next();
+  const response = NextResponse.next();
+
+  // Add CORS headers
+  response.headers.set('Access-Control-Allow-Origin', '*');
+  response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  // Add COOP header
+  response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
+  
+  // Add other security headers
+  response.headers.set('Cross-Origin-Embedder-Policy', 'require-corp');
+  response.headers.set('Cross-Origin-Resource-Policy', 'same-site');
+
+  return response;
 }
 
 // Configure the middleware to run on specific paths
@@ -42,5 +56,6 @@ export const config = {
     '/payment/:path*',
     '/confirmation/:path*',
     '/profile/:path*',
+    '/api/:path*',
   ],
 }; 

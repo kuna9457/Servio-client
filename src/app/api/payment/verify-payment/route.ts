@@ -7,7 +7,15 @@ export async function POST(request: NextRequest) {
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return NextResponse.json(
         { success: false, error: 'Authentication required' },
-        { status: 401 }
+        { 
+          status: 401,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            'Cross-Origin-Opener-Policy': 'same-origin'
+          }
+        }
       );
     }
 
@@ -36,7 +44,15 @@ export async function POST(request: NextRequest) {
       console.error('Response text:', text);
       return NextResponse.json(
         { success: false, error: 'Backend server returned non-JSON response' },
-        { status: 500 }
+        { 
+          status: 500,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            'Cross-Origin-Opener-Policy': 'same-origin'
+          }
+        }
       );
     }
     
@@ -44,12 +60,28 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
     
     // Return the response with the same status code
-    return NextResponse.json(data, { status: response.status });
+    return NextResponse.json(data, { 
+      status: response.status,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Cross-Origin-Opener-Policy': 'same-origin'
+      }
+    });
   } catch (error: any) {
     console.error('Error in verify-payment API route:', error);
     return NextResponse.json(
       { success: false, error: error.message || 'Internal server error' },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+          'Cross-Origin-Opener-Policy': 'same-origin'
+        }
+      }
     );
   }
 } 
